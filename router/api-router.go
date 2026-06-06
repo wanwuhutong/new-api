@@ -396,5 +396,44 @@ func SetApiRouter(router *gin.Engine) {
 			deploymentsRoute.POST("/:id/extend", controller.ExtendDeployment)
 			deploymentsRoute.DELETE("/:id", controller.DeleteDeployment)
 		}
+
+		// Distribution (Affiliate) routes
+		// Distributor management (admin)
+		distributionAdminRoute := apiRouter.Group("/distribution/admin")
+		distributionAdminRoute.Use(middleware.AdminAuth())
+		{
+			distributionAdminRoute.GET("/", controller.GetAllDistributors)
+			distributionAdminRoute.GET("/statistics", controller.GetDistributorStatistics)
+			distributionAdminRoute.GET("/logs", controller.GetAllCommissionLogs)
+			distributionAdminRoute.POST("/", controller.CreateDistributor)
+			distributionAdminRoute.PUT("/:id", controller.UpdateDistributor)
+			distributionAdminRoute.DELETE("/:id", controller.DeleteDistributor)
+			distributionAdminRoute.POST("/:id/settle", controller.SettleDistributorCommission)
+			distributionAdminRoute.GET("/:id", controller.GetDistributor)
+		}
+
+		// Distributor self-service (user auth)
+		distributionRoute := apiRouter.Group("/distribution")
+		distributionRoute.Use(middleware.UserAuth())
+		{
+			distributionRoute.GET("/self", controller.GetMyDistributorInfo)
+			distributionRoute.GET("/dashboard", controller.GetDistributorDashboard)
+			distributionRoute.GET("/logs", controller.GetDistributorCommissionLogs)
+			distributionRoute.GET("/children", controller.GetDistributorChildren)
+			distributionRoute.GET("/users", controller.GetDistributorDirectUsers)
+		}
+
+		// Commission rate management (admin)
+		commissionRateRoute := apiRouter.Group("/commission-rate")
+		commissionRateRoute.Use(middleware.AdminAuth())
+		{
+			commissionRateRoute.GET("/", controller.GetAllCommissionRates)
+			commissionRateRoute.POST("/", controller.CreateCommissionRate)
+			commissionRateRoute.PUT("/:id", controller.UpdateCommissionRate)
+			commissionRateRoute.DELETE("/:id", controller.DeleteCommissionRate)
+		}
+
+		// Public commission rate query
+		apiRouter.GET("/commission-rate/type", controller.GetCommissionRateByType)
 	}
 }

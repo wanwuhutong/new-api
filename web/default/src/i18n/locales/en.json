@@ -4522,4 +4522,119 @@
     "Zhipu V4": "Zhipu V4",
     "Zoom": "Zoom"
   }
+,
+    "distribution": {
+      "title": "Distribution Management",
+      "subtitle": "Manage distributors and commission settings",
+      "createDistributor": "Create Distributor",
+      "editDistributor": "Edit Distributor",
+      "notDistributor": "You are not a distributor",
+      "myDashboard": "My Distribution Center",
+      "dashboardSubtitle": "View your commission and referral data",
+      "confirmDelete": "Are you sure you want to delete this distributor?",
+      "confirmSettle": "Are you sure you want to settle commission for this distributor?",
+      "settle": "Settle",
+      "settleNow": "Settle Now",
+      "level1": "Level 1 Distributor",
+      "level2": "Level 2 Distributor",
+      "level3": "Level 3 Distributor",
+      "active": "Active",
+      "inactive": "Inactive",
+      "distributor": "Distributor",
+      "notDistributorYet": "Not a Distributor Yet",
+      "columns": {
+        "id": "ID",
+        "username": "Username",
+        "displayName": "Display Name",
+        "level": "Distributor Level",
+        "parent": "Parent Distributor",
+        "totalCommission": "Total Commission",
+        "availableCommission": "Available Commission",
+        "directUsers": "Direct Users",
+        "childDistributors": "Child Distributors",
+        "status": "Status"
+      },
+      "stats": {
+        "totalDistributors": "Total Distributors",
+        "activeDistributors": "Active Distributors",
+        "totalUsersInvited": "Total Users Invited",
+        "commissionPaid": "Commission Paid",
+        "commissionPending": "Commission Pending"
+      },
+      "userId": "User ID",
+      "userIdPlaceholder": "Enter user ID",
+      "parentDistributor": "Parent Distributor",
+      "parentIdPlaceholder": "Leave empty for top-level",
+      "status": "Status",
+      "totalCommission": "Total Commission",
+      "availableCommission": "Available Commission",
+      "pendingCommission": "Pending Commission",
+      "withdrawnCommission": "Withdrawn Commission",
+      "totalUsers": "Total Users",
+      "level1Users": "Level 1 Users",
+      "level2Users": "Level 2 Users",
+      "level3Users": "Level 3 Users",
+      "childDistributors": "Child Distributors",
+      "distributorLevel": "Distributor Level",
+      "tabs": {
+        "dashboard": "Dashboard",
+        "commissionLogs": "Commission Logs",
+        "childDistributors": "Child Distributors",
+        "directUsers": "Direct Users"
+      }
+    },
+    "commissionRate": {
+      "title": "Commission Rates",
+      "subtitle": "Configure commission rates for different products",
+      "create": "Add Commission Rate",
+      "edit": "Edit Commission Rate",
+      "confirmDelete": "Are you sure you want to delete this commission rate?",
+      "name": "Name",
+      "namePlaceholder": "e.g., OpenAI Model Commission",
+      "type": "Type",
+      "typeId": "Type ID",
+      "typeIdPlaceholder": "Leave empty for all",
+      "level1": "Level 1 Rate",
+      "level2": "Level 2 Rate",
+      "level3": "Level 3 Rate",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "columns": {
+        "name": "Name",
+        "type": "Type",
+        "typeId": "Type ID"
+      },
+      "type": {
+        "channel": "Channel",
+        "model": "Model",
+        "product": "Product"
+      }
+    },
+    "commissionLog": {
+      "title": "Commission Logs",
+      "subtitle": "View all distribution commission records",
+      "columns": {
+        "id": "ID",
+        "distributor": "Distributor",
+        "user": "Consumer",
+        "orderId": "Order ID",
+        "orderType": "Order Type",
+        "amount": "Order Amount",
+        "commission": "Commission",
+        "level": "Level",
+        "status": "Status",
+        "createdAt": "Created At",
+        "settledAt": "Settled At"
+      },
+      "level1": "Level 1",
+      "level2": "Level 2",
+      "level3": "Level 3",
+      "settled": "Settled",
+      "pending": "Pending",
+      "orderType": {
+        "topup": "Top-up",
+        "subscription": "Subscription"
+      }
+    }
+  }
 }

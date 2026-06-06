@@ -135,3 +135,50 @@ For request structs that are parsed from client JSON and then re-marshaled to up
 ### Rule 7: Billing Expression System — Read `pkg/billingexpr/expr.md`
 
 When working on tiered/dynamic billing (expression-based pricing), you MUST read `pkg/billingexpr/expr.md` first. It documents the design philosophy, expression language (variables, functions, examples), full system architecture (editor → storage → pre-consume → settlement → log display), token normalization rules (`p`/`c` auto-exclusion), quota conversion, and expression versioning. All code changes to the billing expression system must follow the patterns described in that document.
+
+### Rule 8: Distribution (Affiliate) System
+
+The system implements a 3-tier distribution/affiliate system with the following components:
+
+**Backend Files:**
+- `model/distribution.go` — Data models for distributors, commission rates, and commission logs
+- `dto/distribution.go` — Request/response DTOs
+- `service/distribution.go` — Business logic for commission calculation and distribution management
+- `controller/distribution.go` — API controllers
+- `bin/migration_distribution.sql` — Database migration script
+
+**Key Models:**
+- `Distribution` — Distributor records (links users to distribution tree)
+- `CommissionRate` — Configurable commission rates per channel/model/product
+- `CommissionLog` — Records of calculated commissions
+
+**Commission Calculation:**
+- Triggered in `controller/topup.go` after successful topup (consumption)
+- Also integrated in `model/subscription.go` for subscription purchases
+- Supports 3-tier commission: Level 1 (direct referral), Level 2, Level 3
+- Commission is calculated based on configured `CommissionRate` for the channel
+
+**Frontend Files:**
+- `web/default/src/features/distribution/` — Distribution feature module
+  - `api/` — API client functions
+  - `stores/` — Zustand state management stores
+  - `components/` — Reusable UI components
+  - `pages/` — Page components (admin and distributor dashboard)
+
+**API Endpoints:**
+- `GET /api/v1/distribution/admin/` — List all distributors (admin)
+- `POST /api/v1/distribution/admin/` — Create distributor (admin)
+- `PUT /api/v1/distribution/admin/:id` — Update distributor (admin)
+- `DELETE /api/v1/distribution/admin/:id` — Delete distributor (admin)
+- `POST /api/v1/distribution/admin/:id/settle` — Settle commission (admin)
+- `GET /api/v1/distribution/admin/statistics` — Get distribution statistics (admin)
+- `GET /api/v1/distribution/admin/logs` — List all commission logs (admin)
+- `GET /api/v1/distribution/self` — Get current user's distributor info
+- `GET /api/v1/distribution/dashboard` — Get distributor dashboard data
+- `GET /api/v1/distribution/logs` — Get current distributor's commission logs
+- `GET /api/v1/distribution/children` — Get child distributors
+- `GET /api/v1/distribution/users` — Get direct referral users
+- `GET /api/v1/commission-rate/` — List commission rates (admin)
+- `POST /api/v1/commission-rate/` — Create commission rate (admin)
+- `PUT /api/v1/commission-rate/:id` — Update commission rate (admin)
+- `DELETE /api/v1/commission-rate/:id` — Delete commission rate (admin)
