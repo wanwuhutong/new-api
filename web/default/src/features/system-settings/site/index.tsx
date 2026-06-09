@@ -27,7 +27,7 @@ import {
 const defaultSiteSettings: SiteSettings = {
   'theme.frontend': 'default',
   Notice: '',
-  SystemName: 'Intokenlear',
+  SystemName: 'Intokenclear',
   Logo: '',
   Footer: '',
   About: '',
