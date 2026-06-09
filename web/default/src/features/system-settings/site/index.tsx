@@ -27,7 +27,7 @@ import {
 const defaultSiteSettings: SiteSettings = {
   'theme.frontend': 'default',
   Notice: '',
-  SystemName: '聚合词元',
+  SystemName: 'Intokenlear',
   Logo: '',
   Footer: '',
   About: '',
